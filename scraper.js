@@ -5,6 +5,8 @@
 const puppeteer = require('puppeteer')
 const random_useragent = require('random-useragent')
 
+const fs = require('fs')
+
 const { url } = require('./config')
 
 ;(async () => {
@@ -33,9 +35,11 @@ const { url } = require('./config')
   const year = date.getFullYear()
   const fullDate = `${day}/${month}/${year}`
 
-  console.log(`name: ${name}`)
-  console.log(`price: ${price}`)
-  console.log(`date: ${fullDate}`)
+  // Save data to the text file
+
+  const logger = fs.createWriteStream('log.csv', { flags: 'a' })
+  logger.write(`${fullDate},${name},${price}\n`)
+  logger.close()
   
   // Open browser
   await browser.close()
