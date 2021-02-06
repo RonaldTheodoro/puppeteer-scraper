@@ -19,8 +19,24 @@ const { url } = require('./config')
   await page.setUserAgent(random_useragent.getRandom())
 
   // Get data from bookstore
+  const nameSelector = '.product_main > h1'
+  const priceSelector = '.price_color'
   await page.goto(url)
+  await page.waitForSelector(nameSelector)
+  await page.waitForSelector(priceSelector)
+  const name = await page.$eval(nameSelector, (e) => e.innerHTML)
+  const price = await page.$eval(priceSelector, (e) => e.innerHTML)
+  
+  const date = new Date()
+  const day = date.getDay()
+  const month = date.getMonth() + 1
+  const year = date.getFullYear()
+  const fullDate = `${day}/${month}/${year}`
 
+  console.log(`name: ${name}`)
+  console.log(`price: ${price}`)
+  console.log(`date: ${fullDate}`)
+  
   // Open browser
   await browser.close()
 })().catch((error) => {
