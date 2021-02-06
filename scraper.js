@@ -3,6 +3,8 @@
  */
 
 const puppeteer = require('puppeteer')
+const random_useragent = require('random-useragent')
+
 const { url } = require('./config')
 
 ;(async () => {
@@ -11,6 +13,7 @@ const { url } = require('./config')
   await page.setDefaultTimeout(10000)
   await page.setDefaultNavigationTimeout(20000)
   await page.setViewport({ width: 1368, height: 768 })
+  await page.setUserAgent(random_useragent.getRandom())
   await page.goto(url)
 
   await browser.close()

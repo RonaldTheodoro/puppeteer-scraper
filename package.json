@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/RonaldTheodoro/puppeteer-scraper#readme",
   "dependencies": {
-    "puppeteer": "^7.0.1"
+    "puppeteer": "^7.0.1",
+    "random-useragent": "^0.5.0"
   }
 }
